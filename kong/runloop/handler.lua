@@ -22,6 +22,7 @@ local certificate = require "kong.runloop.certificate"
 
 local kong        = kong
 local pcall       = pcall
+local assert      = assert
 local tostring    = tostring
 local tonumber    = tonumber
 local sub         = string.sub
@@ -425,6 +426,12 @@ return {
 
   -- exported for unit-testing purposes only
   _set_rebuild_router = _set_rebuild_router,
+
+  init = {
+    after = function()
+      assert(init_router("init"))
+    end
+  },
 
   init_worker = {
     before = function()
