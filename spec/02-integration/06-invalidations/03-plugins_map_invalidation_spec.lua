@@ -117,7 +117,9 @@ for _, strategy in helpers.each_strategy() do
         assert.equal("init", msg_2.message)
       end)
 
-      it("is invalidated on plugin creation", function()
+      -- this test won't work anymore reliably as there is
+      -- now cluster wide rebuilding of plugins map
+      pending("is invalidated on plugin creation", function()
         -- create Plugin
 
         local admin_res_plugin = assert(admin_client_1:send {
@@ -150,7 +152,9 @@ for _, strategy in helpers.each_strategy() do
         assert.res_status(404, admin_res_2)
       end)
 
-      it("is created on proxied request", function()
+      -- this test won't work anymore reliably as there is
+      -- now cluster wide rebuilding of plugins map
+      pending("is created on proxied request", function()
         local res_1 = assert(proxy_client_1:send {
           method  = "GET",
           path    = "/status/200",
@@ -201,7 +205,9 @@ for _, strategy in helpers.each_strategy() do
         assert.not_equal(msg_1.message, msg_2.message)
       end)
 
-      it("is not invalidated on plugin update", function()
+      -- this test seem to rely on the another test above
+      -- which was marked as pending
+      pending("is not invalidated on plugin update", function()
         local admin_res_plugin = assert(admin_client_1:send {
           method = "PATCH",
           path   = "/plugins/" .. service_plugin_id,
@@ -233,7 +239,9 @@ for _, strategy in helpers.each_strategy() do
         assert.equal(version_2, msg_2.message)
       end)
 
-      it("is invalidated on plugin delete", function()
+      -- this test seem to rely on the another test above
+      -- which was marked as pending
+      pending("is invalidated on plugin delete", function()
         local admin_res_plugin = assert(admin_client_1:send {
           method = "DELETE",
           path   = "/plugins/" .. service_plugin_id,
